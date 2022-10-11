@@ -11,9 +11,14 @@
     "type": "git",
     "url": "git+https://github.com/daysnap/banana.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "daysnap",
+    "banana",
+    "form",
+    "validate"
+  ],
+  "author": "woshiajuana <979703986@qq.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/daysnap/banana/issues"
   },
@@ -23,5 +28,9 @@
     "@commitlint/config-conventional": "^16.2.1",
     "commitizen": "^4.2.4",
     "husky": "^7.0.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
