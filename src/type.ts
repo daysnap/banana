@@ -6,11 +6,13 @@ export type BananaValidator = RegExp | ((v: any) => Promise<boolean> | boolean)
 /**
  * 验证规则
  */
-export type BananaRule = {
-  validator?: BananaValidator
-  message?: string
-  required?: boolean
-} | BananaValidator
+export type BananaRule =
+  | {
+      validator?: BananaValidator
+      message?: string
+      required?: boolean
+    }
+  | BananaValidator
 
 /**
  * 每一项数据
@@ -29,6 +31,8 @@ export interface BananaItem {
 /**
  * 数据源
  */
-export type BananaSource = {
-  [key: string]: BananaItem
-} | BananaItem[]
+export type BananaSource =
+  | {
+      [key: string]: BananaItem
+    }
+  | BananaItem[]

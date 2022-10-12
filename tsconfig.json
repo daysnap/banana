@@ -19,7 +19,7 @@
     "allowJs": true
   },
   "include": [
-    "src",
+    "src/**/*.ts",
     ".eslintrc.js",
     ".commitlint.config.js"
   ],
