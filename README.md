@@ -30,11 +30,25 @@ const formRule = {
   ],
   age: [
     { required: true, messages: '请填写年龄' },
-    { validator: /^\d$/, messages: '年龄输入有误' }
+    { validator: /^\d$/, messages: '年龄输入有误' },
+    (value) => {
+      if (value < 0) {
+        throw new Error('年龄不能为负数')
+      }
+    },
   ],
 }
 
-banana.check(form, formRule)
+banana.validate(form, formRule)
+```
 
-banana.validate(form)
+```ts
+import banana from '@daysnap/banana'
+
+const form = {
+  name: {
+    value: '',
+
+  }
+}
 ```
