@@ -23,6 +23,13 @@ module.exports = {
       { ignoreTypeReferences: true },
     ],
     '@typescript-eslint/no-explicit-any': 'off', // 禁止使用该 any 类型
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ], // 禁止未使用的变量
 
     'import/extensions': 'off',
     'no-use-before-define': 'off',
