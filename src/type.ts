@@ -1,38 +1,23 @@
-/**
- * 验证器
- */
-export type BananaValidator = RegExp | ((v: any) => Promise<boolean> | boolean)
+export type Validator = (...args: any[]) => any
 
-/**
- * 验证规则
- */
-export type BananaRule =
+export type Rule =
   | {
-      validator?: BananaValidator
+      validator?: RegExp | Validator
       message?: string
       required?: boolean
     }
-  | BananaValidator
+  | Validator
 
-/**
- * 每一项数据
- */
-export interface BananaItem {
+export interface Field {
   value?: any
-  rules?: BananaRule[]
+  defaultValue?: any
+  rules?: Rule[]
   hidden?: boolean
-  set?: (d: any, s: BananaItem) => void
-  get?: (v: any) => any
+  set?: (source: any, field: Field, data: MetaData) => void
+  get?: (value: any, filed: Field, data: MetaData) => any
   key?: string
-  children?: BananaSource
+  children?: MetaData
   [key: string]: any
 }
 
-/**
- * 数据源
- */
-export type BananaSource =
-  | {
-      [key: string]: BananaItem
-    }
-  | BananaItem[]
+export type MetaData = Record<string, Field> | Field[]

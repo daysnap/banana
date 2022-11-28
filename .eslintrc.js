@@ -32,8 +32,10 @@ module.exports = {
     ], // 禁止未使用的变量
 
     'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
+
+    'no-console': 'off',
     'no-use-before-define': 'off',
     'no-prototype-builtins': 'off',
-    'import/prefer-default-export': 'off',
   },
 }
