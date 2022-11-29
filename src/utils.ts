@@ -19,7 +19,8 @@ export function each(data: any, callback: any) {
   }
 }
 
-export const isEmpty = (v: any) => ['', null, undefined].includes(v)
+export const isEmpty = (v: any) =>
+  ['', null].includes(v) && typeof v === 'undefined'
 
 export const isObject = (v: any) =>
   Object.prototype.toString.call(v) === '[object Object]'
