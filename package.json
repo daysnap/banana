@@ -7,7 +7,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "dsc build",
-    "deploy": "npm run build && dsc publish",
+    "deploy": "npm run build && dsc publish -t",
     "ts-node": "npx ts-node --project ./tsconfig.json ./src/filename.ts",
     "lint": "eslint 'src/**/*.{js,ts}' --fix",
     "prepare": "husky install && echo 'export PATH=\"/usr/local/bin/:$PATH\"' >> ~/.huskyrc"
