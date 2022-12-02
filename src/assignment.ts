@@ -1,5 +1,5 @@
 import { Field, MetaData } from './type'
-import { each, isEmpty } from './utils'
+import { each } from './utils'
 
 export function assignment(source: Record<string, any>, data: MetaData) {
   each<Field>(data as any, (field, i) => {
@@ -13,7 +13,7 @@ export function assignment(source: Record<string, any>, data: MetaData) {
     const value = source[key ?? i]
     if (typeof set === 'function') {
       set(source, field, data)
-    } else if (!isEmpty(value)) {
+    } else if (typeof value !== 'undefined') {
       Object.assign(field, { value })
     }
   })
