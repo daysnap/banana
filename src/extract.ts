@@ -12,11 +12,12 @@ export function extract(data: MetaData) {
       Object.assign(result, extract(children))
     }
 
+    if (typeof value === 'undefined') {
+      return
+    }
+
     if (hidden) {
       value = defaultValue
-      if (typeof value === 'undefined') {
-        return
-      }
     }
 
     const k = key ?? i
