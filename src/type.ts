@@ -12,7 +12,7 @@ export interface Field {
   value?: any
   defaultValue?: any
   rules?: Rule[]
-  hidden?: boolean
+  hidden?: boolean | ((value: any, filed: Field, data: MetaData) => boolean)
   set?: (source: any, field: Field, data: MetaData) => void
   get?: (value: any, filed: Field, data: MetaData) => any
   key?: string
@@ -20,4 +20,8 @@ export interface Field {
   [key: string]: any
 }
 
-export type MetaData = Record<string, Field> | Field[]
+export type MetaDataObject = Record<string, Field>
+
+export type MetaDataArray = Field[]
+
+export type MetaData = MetaDataObject | MetaDataArray

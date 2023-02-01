@@ -1,8 +1,8 @@
 import type { Field, MetaData } from './type'
 import { each, isObject } from './utils'
 
-export function extract(data: MetaData) {
-  const result: Record<string, any> = {}
+export function extract<T = any>(data: MetaData): T {
+  const result: any = {}
 
   each<Field>(data as any, (field, i) => {
     // eslint-disable-next-line prefer-const
@@ -16,6 +16,9 @@ export function extract(data: MetaData) {
       return
     }
 
+    if (typeof hidden === 'function') {
+      hidden = hidden(value, field, data)
+    }
     if (hidden) {
       value = defaultValue
     }
