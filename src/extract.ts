@@ -14,6 +14,7 @@ export function extract<T = any>(metaData: MetaData): T {
         Object.assign(result, loop(children))
       }
 
+      // 没有 value 直接返回
       if (typeof value === 'undefined') {
         return
       }
@@ -23,6 +24,11 @@ export function extract<T = any>(metaData: MetaData): T {
       }
       if (hidden) {
         value = defaultValue
+
+        // 有 hidden 判断是否有默认值
+        if (typeof value === 'undefined') {
+          return
+        }
       }
 
       const k = key ?? i
