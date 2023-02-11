@@ -28,7 +28,7 @@ export function validate<T = any>(data: any, dataRules?: any): T {
       }
 
       if (typeof hidden === 'function') {
-        hidden = hidden(value, field, source)
+        hidden = hidden(value, field, metaData)
       }
       if (hidden || !rules || !rules.length) return
 
