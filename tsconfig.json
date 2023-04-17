@@ -1,21 +1,18 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "moduleResolution": "node",
     "baseUrl": "./",
     "jsx": "preserve",
-    "declaration": true,
+    "strict": true,
+    "target": "ES2015",
+    "module": "CommonJS",
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "declaration": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./lib"
   },
   "include": [
     "src/**/*.ts",
   ],
-  "exclude": ["node_modules"],
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
+  "exclude": ["node_modules"]
 }

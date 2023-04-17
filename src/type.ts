@@ -20,8 +20,12 @@ export interface Field {
   [key: string]: any
 }
 
-export type MetaDataObject = Record<string, Field>
+// 这里扩展出一个 泛型 主要是提供给 外部 扩展 interface 使用方便
+export type MetaDataObject<
+  T extends Record<string, any> = Record<string, any>,
+> = Record<string, Field & T>
 
-export type MetaDataArray = Field[]
+export type MetaDataArray<T extends Record<string, any> = Record<string, any>> =
+  (Field & T)[]
 
 export type MetaData = MetaDataObject | MetaDataArray

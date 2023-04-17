@@ -1,7 +1,15 @@
 import type { Field, MetaData } from './type'
 import { each, isObject } from './utils'
 
-export function extract<T = any>(metaData: MetaData): T {
+export interface ExtractOptions {
+  excludeHiddenFiled?: boolean
+}
+
+export function extract<T = any>(
+  metaData: MetaData,
+  options: ExtractOptions = {},
+): T {
+  const { excludeHiddenFiled = true } = options
   const result: any = {}
 
   let loop: any
@@ -19,15 +27,18 @@ export function extract<T = any>(metaData: MetaData): T {
         return
       }
 
-      if (typeof hidden === 'function') {
-        hidden = hidden(value, field, metaData)
-      }
-      if (hidden) {
-        value = defaultValue
+      // 是否排除 hidden 的项
+      if (excludeHiddenFiled) {
+        if (typeof hidden === 'function') {
+          hidden = hidden(value, field, metaData)
+        }
+        if (hidden) {
+          value = defaultValue
 
-        // 有 hidden 判断是否有默认值
-        if (typeof value === 'undefined') {
-          return
+          // 有 hidden 判断是否有默认值
+          if (typeof value === 'undefined') {
+            return
+          }
         }
       }
 
