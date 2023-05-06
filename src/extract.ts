@@ -2,14 +2,17 @@ import type { Field, MetaData } from './type'
 import { each, isObject } from './utils'
 
 export interface ExtractOptions {
+  // 是否排除 hidden 项 默认 true
   excludeHiddenFiled?: boolean
+  // 是否包含本身 value 默认 false
+  includeSelfFiled?: boolean
 }
 
 export function extract<T = any>(
   metaData: MetaData,
   options: ExtractOptions = {},
 ): T {
-  const { excludeHiddenFiled = true } = options
+  const { excludeHiddenFiled = true, includeSelfFiled = false } = options
   const result: any = {}
 
   let loop: any
@@ -44,6 +47,9 @@ export function extract<T = any>(
 
       const k = key ?? i
       if (typeof get === 'function') {
+        if (includeSelfFiled) {
+          Object.assign(result, { [k]: value })
+        }
         value = get(value, field, metaData)
         if (isObject(value)) {
           Object.assign(result, value)
