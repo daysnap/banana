@@ -52,7 +52,7 @@ export function extract<T = any>(
         }
         value = get(value, field, metaData)
         if (isObject(value)) {
-          Object.assign(result, value)
+          Object.assign(result, getValue(value))
         } else {
           result[k] = getValue(value)
         }
