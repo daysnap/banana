@@ -1,6 +1,6 @@
 {
   "name": "@daysnap/banana",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "表单校验、辅助方法",
   "main": "lib/index.js",
   "module": "es/index.js",

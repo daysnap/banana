@@ -1,5 +1,5 @@
 import type { Field, MetaData } from './type'
-import { each, isObject } from './utils'
+import { each, isObject, getValue } from './utils'
 
 export interface ExtractOptions {
   // 是否排除 hidden 项 默认 true
@@ -48,16 +48,16 @@ export function extract<T = any>(
       const k = key ?? i
       if (typeof get === 'function') {
         if (includeSelfFiled) {
-          Object.assign(result, { [k]: value })
+          Object.assign(result, { [k]: getValue(value) })
         }
         value = get(value, field, metaData)
         if (isObject(value)) {
           Object.assign(result, value)
         } else {
-          result[k] = value
+          result[k] = getValue(value)
         }
       } else {
-        result[k] = value
+        result[k] = getValue(value)
       }
     })
   })(metaData)

@@ -24,3 +24,12 @@ export const isEmpty = (v: any) =>
 
 export const isObject = (v: any) =>
   Object.prototype.toString.call(v) === '[object Object]'
+
+export const clone = (v: any) => JSON.parse(JSON.stringify(v))
+
+export const getValue = (value: unknown) => {
+  if (typeof value === 'object') {
+    return clone(value)
+  }
+  return value
+}
