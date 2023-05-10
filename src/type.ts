@@ -29,3 +29,10 @@ export type MetaDataArray<T extends Record<string, any> = Record<string, any>> =
   (Field & T)[]
 
 export type MetaData = MetaDataObject | MetaDataArray
+
+export interface ExtractOptions {
+  // 是否排除 hidden 项 默认 true
+  excludeHiddenFiled?: boolean
+  // 是否包含本身 value 默认 false
+  includeSelfFiled?: boolean
+}

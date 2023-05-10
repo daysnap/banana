@@ -1,23 +1,11 @@
-import type { MetaData, Field, Rule } from './type'
+import type { MetaData, Field, ExtractOptions } from './type'
 import { each, isEmpty } from './utils'
 import { extract } from './extract'
 
-export function validate<T = any>(data: MetaData): T
 export function validate<T = any>(
-  data: Record<string, any>,
-  dataRules: { [key: string]: Rule[] },
-): T
-export function validate<T = any>(data: any, dataRules?: any): T {
-  let metaData = data
-  if (dataRules) {
-    metaData = Object.keys(data).reduce<Record<string, any>>((result, key) => {
-      return Object.assign(result[key], {
-        value: data[key],
-        rules: dataRules[key],
-      })
-    }, {})
-  }
-
+  metaData: MetaData,
+  options: ExtractOptions = {},
+): T {
   let loop: any
   ;(loop = (source: MetaData) => {
     each<Field>(source as any, (field) => {
@@ -53,5 +41,5 @@ export function validate<T = any>(data: any, dataRules?: any): T {
     })
   })(metaData)
 
-  return extract<T>(data)
+  return extract<T>(metaData, options)
 }

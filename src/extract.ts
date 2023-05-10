@@ -1,12 +1,5 @@
-import type { Field, MetaData } from './type'
+import type { Field, MetaData, ExtractOptions } from './type'
 import { each, isObject, getValue } from './utils'
-
-export interface ExtractOptions {
-  // 是否排除 hidden 项 默认 true
-  excludeHiddenFiled?: boolean
-  // 是否包含本身 value 默认 false
-  includeSelfFiled?: boolean
-}
 
 export function extract<T = any>(
   metaData: MetaData,
