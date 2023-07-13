@@ -30,7 +30,10 @@ export function validate<T = any>(
           if (required && isEmpty(value)) {
             throw message
           }
-          if (typeof validator === 'function' && validator(value) === false) {
+          if (
+            typeof validator === 'function' &&
+            validator(value, field, metaData) === false
+          ) {
             throw message
           }
           if (validator instanceof RegExp && !validator.test(value)) {
